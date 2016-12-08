@@ -33,6 +33,28 @@
         <link href="assets/layouts/layout2/css/themes/blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="assets/layouts/layout2/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
+
+        <style type="text/css">
+            .slide h1 {
+                font-size: 4em;
+                font-weight: bold;
+                color: #dadada;
+                margin-bottom: 0;
+                letter-spacing: -.08em;
+                text-rendering: optimizeLegibility;
+            }
+
+            .slide {
+                font: 26px/1.231 sans-serif;
+            }
+
+            .slide p {
+                color: #222;
+                margin-left: 2em;
+                line-height: 1.25em;
+                margin: 0;
+            }
+        </style>
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
 
@@ -1150,8 +1172,9 @@
                                         <div class="form-body">
                                             <div class="form-group last">
                                                 <label class="control-label col-md-2">Default Editor</label>
-                                                <div class="col-md-10">
-                                                    <div name="summernote" id="summernote_1"> </div>
+                                                <div class="col-md-10 slide">
+                                                    <h1 contenteditable="true">Tapez votre Titre</h1>
+                                                    <p contenteditable="true">You just make slides in plain old HTML, and the framework will present them for you.  You can create themes and layouts with CSS.</p>    
                                                 </div>
                                             </div>
                                         </div>
@@ -1159,8 +1182,10 @@
                                             <div class="row">
                                                 <div class="col-md-offset-2 col-md-10">
                                                     <button type="submit" class="btn green">
-                                                        <i class="fa fa-check"></i> Submit</button>
-                                                    <button type="button" class="btn default">Cancel</button>
+                                                        <i class="fa fa-arrow-left"></i> Précedent</button>
+                                                    <button type="submit" class="btn green">
+                                                        Suivant <i class="fa fa-arrow-right"></i> </button>
+                                                    <button type="button" class="btn default" style="margin-right: 20px">Cancel</button>
                                                 </div>
                                             </div>
                                         </div>
