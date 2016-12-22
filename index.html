@@ -1117,18 +1117,19 @@
                                     <form class="form-horizontal form-bordered">
                                         <div class="form-body">
                                             <div id="slide-container" class="form-group last">
-                                                <div id='1' class="col-md-10 slide">
+                                                <div></div>
+                                                <div class="col-md-10 slide" id="1" >
                                                     <h1 contenteditable="true">Tapez votre Titre</h1>
-                                                    <p contenteditable="true">You just make slides in plain old HTML, and the framework will present them for you.  You can create themes and layouts with CSS.</p>    
-                                                </div>
-                                            </div>
+                                                    <p contenteditable="true">You just make slides in plain old HTML, and the framework will present them for you.  You can create themes and layouts with CSS.</p> 
+                                                    <p id="currentSlide">1</p>   
+                                                </div></div>
                                         </div>
                                         <div class="form-actions">
                                             <div class="row">
                                                 <div class="col-md-offset-2 col-md-10">
-                                                    <button type="submit" class="btn green">
+                                                    <button type="button" class="btn green" onclick="previous()">
                                                         <i class="fa fa-arrow-left"></i> Précedent</button>
-                                                    <button type="button" class="btn green" onclick="newSlide()">
+                                                    <button type="button" class="btn green" onclick="next()">
                                                         Suivant <i class="fa fa-arrow-right"></i> </button>
                                                     <button type="button" class="btn default pull-right" style="margin-right: 20px">Cancel</button>
                                                 </div>
