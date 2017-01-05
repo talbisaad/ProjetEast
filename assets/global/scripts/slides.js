@@ -5,7 +5,7 @@ function newSlide() {
 	newSlide.className = "col-md-10 slide";
 	newSlide.id        = parseInt(lastSlideId)+1;
 	var slideHTML      = '<h1 contenteditable="true">Tapez votre Titre<\/h1><p contenteditable="true">'
-					   + 'You just make slides in plain old HTML, and the framework will present them for you.  You can create themes and layouts with CSS.<\/p><p>'+newSlide.id+'<\/p> ';
+					   + 'You just make slides in plain old HTML, and the framework will present them for you.  You can create themes and layouts with CSS.<\/p>';
 	newSlide.innerHTML = slideHTML;
 	document.getElementById('currentSlide').innerHTML = newSlide.id;
 	container.appendChild(newSlide);
@@ -22,7 +22,7 @@ function showSlide(indice) {
 			slides[i].style.display = 'none';
 		}
 	}
-	document.getElementById('currentSlide').innerHTML = indice;
+	document.getElementById('currentSlide').innerHTML = indice+" sur "+slides.length;
 }
 
 function next() {
@@ -42,4 +42,17 @@ function previous() {
 	if(currentSlide > 1){
 		showSlide(currentSlide-1);
 	}
+}
+
+function getSelected() {
+	var userSelection;
+	if (window.getSelection) {
+		userSelection = window.getSelection();
+		console.log("1");
+	}
+	else if (document.selection) { // should come last; Opera!
+		userSelection = document.selection.createRange();
+		console.log("2");
+	}
+	userSelection.text.style.fontWeight='bold';
 }
