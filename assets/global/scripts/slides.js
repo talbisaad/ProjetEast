@@ -44,15 +44,13 @@ function previous() {
 	}
 }
 
-function getSelected() {
-	var userSelection;
-	if (window.getSelection) {
-		userSelection = window.getSelection();
-		console.log("1");
+function setChapitre() {
+	var currentSlide = parseInt(document.getElementById('currentSlide').innerHTML);
+	var slides = document.getElementsByClassName('slide');
+	for (var i = 0; i < slides.length; i++) {
+		if (parseInt(slides[i].id) == currentSlide) {
+			var slideHTML = '<h1 contenteditable="true" style="text-align: center; margin : auto">Titre du chapitre<\/h1>';
+			slides[i].innerHTML = slideHTML;
+		}
 	}
-	else if (document.selection) { // should come last; Opera!
-		userSelection = document.selection.createRange();
-		console.log("2");
-	}
-	userSelection.text.style.fontWeight='bold';
 }
