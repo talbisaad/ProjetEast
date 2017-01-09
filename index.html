@@ -450,7 +450,7 @@
                     <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                     <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                         <li class="nav-item start ">
-                            <a href="#" onclick="setChapitre()" class="nav-link nav-toggle">
+                            <a href="javascript:;" onclick="setChapitre()" class="nav-link nav-toggle">
                                 <i class="fa fa-font"></i>
                                 <span class="title">Chapitre</span>
                             </a>
@@ -463,13 +463,13 @@
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  ">
-                                    <a href="#" onclick="setList('ul')" class="nav-link ">
+                                    <a href="javascript:;" onclick="setList('ul')" class="nav-link ">
                                         <i class="fa fa-list-ul"></i>
                                         <span class="title">Puces</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a  href="#" onclick="setList('ol')" class="nav-link ">
+                                    <a  href="javascript:;" onclick="setList('ol')" class="nav-link ">
                                         <i class="fa fa-list-ol"></i>
                                         <span class="title">Numérotation</span>
                                     </a>
@@ -477,9 +477,10 @@
                             </ul>
                         </li>
                         <li class="nav-item  ">
-                            <a href="?p=" class="nav-link nav-toggle">
+                            <a href="javascript:;" onclick="document.getElementById('image').click();" class="nav-link nav-toggle">
                                 <i class="fa fa-picture-o"></i>
                                 <span class="title">Image</span>
+                                <input type="file" name="image" id="image" style="display: none" onchange="setImage(event)" />
                             </a>
                         </li>
                         <li class="nav-item  ">
@@ -487,6 +488,18 @@
                                 <i class="fa fa-video-camera"></i>
                                 <span class="title">Video</span>
                             </a>
+                            <ul class="sub-menu" style="width: 480px">
+                                <li class="nav-item  ">
+                                    <a href="javascript:;" class="nav-link ">
+                                        <input type="text" name="video" style="width: 440px" id="videoUrl" />
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="javascript:;" class="nav-link ">
+                                        <input type="button" class="btn default btn-block" onclick="setVideo()" value="Envoyer" style="width: 440px;height: 20px; line-height: 0;" />
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item  ">
                             <a href="javascript:;" class="nav-link nav-toggle">
@@ -496,56 +509,135 @@
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  ">
-                                    <a href="#" onclick="setAlign('center')" class="nav-link ">
+                                    <a href="javascript:;" onclick="setAlign('center')" class="nav-link ">
                                         <i class="fa fa-align-center"></i>
                                         <span class="title">Aligner au centre</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="#" onclick="setAlign('right')" class="nav-link ">
+                                    <a href="javascript:;" onclick="setAlign('right')" class="nav-link ">
                                         <i class="fa fa-align-right"></i>
                                         <span class="title">Aligner à droite</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="#" onclick="setAlign('left')" class="nav-link ">
+                                    <a href="javascript:;" onclick="setAlign('left')" class="nav-link ">
                                         <i class="fa fa-align-left"></i>
                                         <span class="title">Aligner à gauche</span>
                                     </a>
                                 </li>
                                 <li class="nav-item  ">
-                                    <a href="#" onclick="setAlign('justify')" class="nav-link ">
+                                    <a href="javascript:;" onclick="setAlign('justify')" class="nav-link ">
                                         <i class="fa fa-align-justify"></i>
                                         <span class="title">Justifier</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item start ">
-                            <a href="javascript:;" class="jscolor {value:'66ccff'} nav-link nav-toggle">
-                                <i class="fa fa-paint-brush"></i>
-                                <span class="title">Couleur</span>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="fa fa-font"></i>
+                                <span class="title">Police</span>
                             </a>
-                            <ul class="sub-menu">
+                            <ul class="sub-menu" style="width: 480px">
                                 <li class="nav-item  ">
-                                    <input class="jscolor" value="ab2567" onchange="setColor(this.value)">
+                                    <a href="javascript:;" class="nav-link ">
+                                        <select class="form-control" id="font">
+                                            <option>Agency FB</option>
+                                            <option>Antiqua</option>
+                                            <option>Architect</option>
+                                            <option>Arial</option>
+                                            <option>BankFuturistic</option>
+                                            <option>BankGothic</option>
+                                            <option>Blackletter</option>
+                                            <option>Blagovest</option>
+                                            <option>Calibri</option>
+                                            <option>Comic Sans MS</option>
+                                            <option>Courier</option>
+                                            <option>Cursive</option>
+                                            <option>Decorative</option>
+                                            <option>Fantasy</option>
+                                            <option>Fraktur</option>
+                                            <option>Frosty</option>
+                                            <option>Garamond</option>
+                                            <option>Georgia</option>
+                                            <option>Helvetica</option>
+                                            <option>Impact</option>
+                                            <option>Minion</option>
+                                            <option>Modern</option>
+                                            <option>Monospace</option>
+                                            <option>Open Sans</option>
+                                            <option>Palatino</option>
+                                            <option>Roman</option>
+                                            <option>Sans-serif</option>
+                                            <option>Serif</option>
+                                            <option>Script</option>
+                                            <option>Swiss</option>
+                                            <option>Times</option>
+                                            <option>Times New Roman</option>
+                                            <option>Tw Cen MT</option>
+                                            <option>Verdana</option>     
+                                        </select>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="javascript:;" class="nav-link ">
+                                        <input type="button" class="btn default btn-block" onclick="setFont()" value="Envoyer" style="width: 440px;height: 20px; line-height: 0;" />
+                                    </a>
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item start ">
+                            <a class="nav-link nav-toggle btn-outline" href="#form_modal" onclick="saveSelect()" data-toggle="modal">
+                                <i class="fa fa-paint-brush"></i>
+                                <span class="title">Couleur</span>
+                            </a>
+                        </li>
+                        <div id="form_modal" class="modal fade" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                    <h4 class="modal-title">Colorpicker in Modal</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="#" class="form-horizontal">
+                                                        <div class="form-group last">
+                                                            <label class="control-label col-md-3">Choisir la couleur</label>
+                                                            <div class="col-md-3">
+                                                                <div class="input-group color colorpicker-default" data-color="#3865a8" data-color-format="rgba">
+                                                                    <input type="text" class="form-control" id="colorPicker" readonly value="#3865a8">
+                                                                    <span class="input-group-btn">
+                                                                        <button class="btn default" type="button" onblur="setColor()">
+                                                                            <i style="background-color: #3865a8;"></i>&nbsp;</button>
+                                                                    </span>
+                                                                </div>
+                                                                <!-- /input-group -->
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">Close</button>
+                                                    <button class="btn green btn-primary" data-dismiss="modal" onclick="setColor()">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                         <li class="nav-item ">
-                            <a href="#" onclick="setBold()" class="nav-link nav-toggle">
+                            <a href="javascript:;" onclick="setBold()" class="nav-link nav-toggle">
                                 <i class="fa fa-bold"></i>
                                 <span class="title">Gras</span>
                             </a>
                         </li>
                         <li class="nav-item  ">
-                            <a href="#" onclick="setItalic()" class="nav-link nav-toggle">
+                            <a href="javascript:;" onclick="setItalic()" class="nav-link nav-toggle">
                                 <i class="fa fa-italic"></i>
                                 <span class="title">Italique</span>
                             </a>
                         </li>
                         <li class="nav-item  ">
-                            <a  href="#" onclick="setUnderline()" class="nav-link nav-toggle">
+                            <a  href="javascript:;" onclick="setUnderline()" class="nav-link nav-toggle">
                                 <i class="fa fa-underline"></i>
                                 <span class="title">Souligné</span>
                             </a>
@@ -1101,6 +1193,8 @@
             <script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
             <script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
             <script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+            <link href="assets/global/plugins/bootstrap-colorpicker/css/colorpicker.css" rel="stylesheet" type="text/css" />
             <!-- END CORE PLUGINS -->
             <!-- BEGIN PAGE LEVEL PLUGINS -->
             <script src="assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
@@ -1119,6 +1213,10 @@
             <script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
             <script src="assets/global/toXml/toXml.js" type="text/javascript"></script>
             <!-- END THEME LAYOUT SCRIPTS -->
+
+
+            <script src="assets/global/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js" type="text/javascript"></script>
+            <script src="assets/pages/scripts/components-color-pickers.min.js" type="text/javascript"></script>
     </body>
 
 </html>

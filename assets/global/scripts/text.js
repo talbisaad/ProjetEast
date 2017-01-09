@@ -1,72 +1,67 @@
 function setBold() {
-	var sel, range;
-    if (window.getSelection) {
-        sel = window.getSelection();
-        if (sel.rangeCount) {
-            range = sel.getRangeAt(0);
-            span = document.createElement('SPAN');
-            span.style.fontWeight = 'bold';
-			span.appendChild(document.createTextNode(range));
-			range.deleteContents();
-            range.insertNode(span);
+    if(getSelectedNode().nodeName == 'SPAN'){
+        getSelectedNode().style.fontWeight = 'bold';
+    } else {
+        var sel, range;
+        if (window.getSelection) {
+            sel = window.getSelection();
+            if (sel.rangeCount) {
+                range = sel.getRangeAt(0);
+                span = document.createElement('SPAN');
+                span.style.fontWeight = 'bold';
+                span.appendChild(document.createTextNode(range));
+                range.deleteContents();
+                range.insertNode(span);
+            }
+        } else if (document.selection && document.selection.createRange) {
+            range = document.selection.createRange();
+            range.text.style.fontWeight = 'bold';
         }
-    } else if (document.selection && document.selection.createRange) {
-        range = document.selection.createRange();
-        range.text.style.fontWeight = 'bold';
     }
 }
 
 function setItalic() {
-    var sel, range;
-    if (window.getSelection) {
-        sel = window.getSelection();
-        if (sel.rangeCount) {
-            range = sel.getRangeAt(0);
-            span = document.createElement('SPAN');
-            span.style.fontStyle = 'italic';
-            span.appendChild(document.createTextNode(range));
-            range.deleteContents();
-            range.insertNode(span);
+    if(getSelectedNode().nodeName == 'SPAN'){
+        getSelectedNode().style.fontStyle = 'italic';
+    } else {
+        var sel, range;
+        if (window.getSelection) {
+            sel = window.getSelection();
+            if (sel.rangeCount) {
+                range = sel.getRangeAt(0);
+                span = document.createElement('SPAN');
+                span.style.fontStyle = 'italic';
+                span.appendChild(document.createTextNode(range));
+                range.deleteContents();
+                range.insertNode(span);
+            }
+        } else if (document.selection && document.selection.createRange) {
+            range = document.selection.createRange();
+            range.text.style.fontStyle = 'italic';
         }
-    } else if (document.selection && document.selection.createRange) {
-        range = document.selection.createRange();
-        range.text.style.fontStyle = 'italic';
     }
+    
 }
 
 function setUnderline() {
-    var sel, range;
-    if (window.getSelection) {
-        sel = window.getSelection();
-        if (sel.rangeCount) {
-            range = sel.getRangeAt(0);
-            span = document.createElement('SPAN');
-            span.style.textDecoration = "underline";
-            span.appendChild(document.createTextNode(range));
-            range.deleteContents();
-            range.insertNode(span);
+    if(getSelectedNode().nodeName == 'SPAN'){
+        getSelectedNode().style.textDecoration = "underline";
+    } else {
+        var sel, range;
+        if (window.getSelection) {
+            sel = window.getSelection();
+            if (sel.rangeCount) {
+                range = sel.getRangeAt(0);
+                span = document.createElement('SPAN');
+                span.style.textDecoration = "underline";
+                span.appendChild(document.createTextNode(range));
+                range.deleteContents();
+                range.insertNode(span);
+            }
+        } else if (document.selection && document.selection.createRange) {
+            range = document.selection.createRange();
+            range.text.style.textDecoration = "underline";
         }
-    } else if (document.selection && document.selection.createRange) {
-        range = document.selection.createRange();
-        range.text.style.textDecoration = "underline";
-    }
-}
-
-function setcolor(color) {
-    var sel, range;
-    if (window.getSelection) {
-        sel = window.getSelection();
-        if (sel.rangeCount) {
-            range = sel.getRangeAt(0);
-            span = document.createElement('SPAN');
-            span.style.color = "#"+color;
-            span.appendChild(document.createTextNode(range));
-            range.deleteContents();
-            range.insertNode(span);
-        }
-    } else if (document.selection && document.selection.createRange) {
-        range = document.selection.createRange();
-        range.text.style.color = "#"+color;
     }
 }
 
@@ -92,7 +87,6 @@ function setAlign(align) {
 
     node.style.textAlign = align;
 }
-
 function setList(type) {
     var sel, range;
     if (window.getSelection) {
@@ -110,5 +104,137 @@ function setList(type) {
     } else if (document.selection && document.selection.createRange) {
         range = document.selection.createRange();
         range.text.style.textDecoration = "underline";
+    }
+}
+
+function setImage(event) {
+
+    var sel, range;
+    if (window.getSelection) {
+        sel = window.getSelection();
+        if (sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            img = new Image();
+            img.id = "test";
+            img.src = URL.createObjectURL(event.target.files[0]);
+             img.onload = function () {
+                if (img.width > 500) {
+                image =    document.getElementById('test');
+                image.style.width = '500px';
+                image.style.height = 'auto';
+                alert(img.width);
+                }
+
+             };
+            
+            
+            range.deleteContents();
+            range.insertNode(img);
+        }
+    } else if (document.selection && document.selection.createRange) {
+        range = document.selection.createRange();
+        range.text.style.fontStyle = 'italic';
+    }   
+}
+
+function saveSelection() {
+    if (window.getSelection) {
+        sel = window.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+            return sel.getRangeAt(0);
+        }
+    } else if (document.selection && document.selection.createRange) {
+        return document.selection.createRange();
+    }
+
+    return null;
+}
+
+function restoreSelection(range) {
+
+    
+    if (range) {
+        if (window.getSelection) {
+            sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+
+        } else if (document.selection && range.select) {
+            range.select();
+        }
+
+ 
+ }
+}
+var savedSelection;
+
+function saveSelect() {
+    savedSelection = saveSelection();
+}
+
+
+function setColor() {
+    var sel, range;
+    var color = document.getElementById('colorPicker');
+    restoreSelection(savedSelection);
+    if(getSelectedNode().nodeName == 'SPAN'){
+        getSelectedNode().style.color = color.value;
+    } else {
+        if (window.getSelection) {
+            sel = window.getSelection();
+            if (sel.getRangeAt && sel.rangeCount) {
+                range = sel.getRangeAt(0);
+                 span = document.createElement('SPAN');
+                span.style.color = color.value;
+                span.appendChild(document.createTextNode(range));
+                range.deleteContents();
+                range.insertNode(span);
+
+            }
+        } else if (document.selection && document.selection.createRange) {
+            range = document.selection.createRange();
+            range.pasteHTML(text);
+            range.select();
+        }
+    }
+}
+
+function setVideo() {
+    var video = document.getElementById('videoUrl');
+    var sel, range;
+    if (window.getSelection) {
+        sel = window.getSelection();
+        if (sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            div = document.createElement('DIV');
+            div.innerHTML = video.value;
+            range.deleteContents();
+            range.insertNode(div);
+        }
+    } else if (document.selection && document.selection.createRange) {
+        range = document.selection.createRange();
+        range.text.style.fontStyle = 'italic';
+    }
+}
+
+
+function setFont() {
+
+    var font = document.getElementById('font');
+    var sel, range;
+    if (window.getSelection) {
+        sel = window.getSelection();
+        if (sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            span = document.createElement('SPAN');
+            span.style.fontFamily = font.value;
+            span.appendChild(document.createTextNode(range));
+            range.deleteContents();
+            range.insertNode(span);
+            
+        }
+    } else if (document.selection && document.selection.createRange) {
+        range = document.selection.createRange();
+        range.text.style.fontStyle = 'italic';
     }
 }
