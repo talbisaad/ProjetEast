@@ -54,3 +54,12 @@ function setChapitre() {
 		}
 	}
 }
+
+function supprimer() {
+	var slides       = document.getElementsByClassName('slide');
+	var currentSlide = parseInt(document.getElementById('currentSlide').innerHTML);
+	if(parseInt(slides[currentSlide-1].id) > 1){
+		slides[currentSlide-1].parentNode.removeChild(slides[currentSlide-1]);
+		showSlide(currentSlide-1);
+	}
+}
