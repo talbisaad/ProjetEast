@@ -49,7 +49,7 @@ function setChapitre() {
 	var slides = document.getElementsByClassName('slide');
 	for (var i = 0; i < slides.length; i++) {
 		if (parseInt(slides[i].id) == currentSlide) {
-			var slideHTML = '<h1 contenteditable="true" style="text-align: center; margin : auto">Titre du chapitre<\/h1>';
+			var slideHTML = '<h1 contenteditable="true" class="chapitre" style="text-align: center; margin : auto">Titre du chapitre<\/h1>';
 			slides[i].innerHTML = slideHTML;
 		}
 	}
