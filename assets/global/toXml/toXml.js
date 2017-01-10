@@ -13,7 +13,7 @@ function ConvertToXml() {
 
 
     var e = elems(0).getElementsByTagName("*");
-    var closeSection=false;
+    var closeSection = false;
     for (var i = 0, max = e.length; i < max; i++) {
 
 
@@ -37,28 +37,25 @@ function ConvertToXml() {
 
             case 'P':
 
-            	//paragraphe qui contienne des élements
+                //paragraphe qui contienne des élements
 
-                if (e(i).getElementsByTagName("ol").length > 0 || e(i).getElementsByTagName("ol").length > 0) {
+                if (e(i).getElementsByTagName("ol").length > 0 || e(i).getElementsByTagName("ul").length > 0 
+                	|| e(i).getElementsByTagName("img").length > 0) {
 
                     var pcontenu = e(i).getElementsByTagName("*");
 
                     for (var i = 0, max = pcontenu.length; i < max; i++) {
 
 
-
                         switch (pcontenu(i).tagName) {
 
-                        	//list
-                            case 'OL'||'UL':
+
+                            //list
+                            case 'OL':
 
                                 var list = pcontenu(i).getElementsByTagName("li");
 
-                                //type de list
-                                if(pcontenu(i).tagName=="OL")
                                 a.WriteLine('<LIST type="1">\n');
-                            	else
-                            	a.WriteLine('<LIST type="circle">\n');	
 
                                 for (var i = 0, max = list.length; i < max; i++) {
 
@@ -66,7 +63,21 @@ function ConvertToXml() {
                                     a.WriteLine('<EL>' + list(i).innerHTML + '</EL>\n');
 
                                 }
+                                a.WriteLine('</LIST>\n');
+                                break;
 
+                            case 'UL':
+
+                                var list = pcontenu(i).getElementsByTagName("li");
+
+                                a.WriteLine('<LIST type="circle">\n');
+
+
+                                for (var i = 0, max = list.length; i < max; i++) {
+
+                                    a.WriteLine('<EL>' + list(i).innerHTML + '</EL>\n');
+
+                                }
                                 a.WriteLine('</LIST>\n');
                                 break;
 
@@ -74,11 +85,7 @@ function ConvertToXml() {
                             case 'IMG':
                                 a.WriteLine('<IMAGE>' + pcontenu(i).getAttribute("src") + '</IMAGE>\n');
                                 break;
-                       /*     case 'P' :
-                            	 closeSection= false;
-                            	WriteSection(pcontenu(i),pcontenu.textContent,a,closeSection);   
-                            	break;*/
-
+                               
                         }
 
 
@@ -88,9 +95,9 @@ function ConvertToXml() {
 
                     //paragraphe normale 
                 } else {
-                	  closeSection=true;
-                	
-                   WriteSection(e(i),tagcontent,a,closeSection);
+                    closeSection = true;
+
+                    WriteSection(e(i), tagcontent, a, closeSection);
 
 
                 }
@@ -106,35 +113,35 @@ function ConvertToXml() {
 }
 
 //fonction pour écrire une paragraphe
-function WriteSection(e,tagcontent,file,closeSection){
+function WriteSection(e, tagcontent, file, closeSection) {
 
-	 var HasSpan = e.getElementsByTagName("span").length;
+    var HasSpan = e.getElementsByTagName("span").length;
 
 
-                    if (HasSpan != 0) {
-                        var sp = e.getElementsByTagName("span");
+    if (HasSpan != 0) {
+        var sp = e.getElementsByTagName("span");
 
-                        var tmp = ApplyAttribut(tagcontent, sp);
+        var tmp = ApplyAttribut(tagcontent, sp);
 
-                        if(closeSection)
+        if (closeSection)
 
-                        file.WriteLine('<PARAGRAPHE>' + tmp + '</PARAGRAPHEs>\n</SECTION>\n');
+            file.WriteLine('<PARAGRAPHE>' + tmp + '</PARAGRAPHEs>\n</SECTION>\n');
 
-                    	else
+        else
 
-                    	file.WriteLine('<PARAGRAPHE>' + tmp + '</PARAGRAPHEs>\n');
+            file.WriteLine('<PARAGRAPHE>' + tmp + '</PARAGRAPHEs>\n');
 
-                    } else {
+    } else {
 
-                    	if(closeSection)
+        if (closeSection)
 
-                        file.WriteLine('<PARAGRAPHE>' + tagcontent + '</PARAGRAPHE>\n</SECTION>\n');
+            file.WriteLine('<PARAGRAPHE>' + tagcontent + '</PARAGRAPHE>\n</SECTION>\n');
 
-                    	else
+        else
 
-                    	 file.WriteLine('<PARAGRAPHE>' + tagcontent + '</PARAGRAPHE>\n');
-                    }
-                    
+            file.WriteLine('<PARAGRAPHE>' + tagcontent + '</PARAGRAPHE>\n');
+    }
+
 }
 
 //fonction pour appliquer un style sur un text selectionné
